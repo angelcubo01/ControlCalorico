@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrabajoFinal_IGU_70926454C"
         mc:Ignorable="d"
-        Title="Control de Calorias" Height="450" Width="800">
+        Title="Control de Calorias" Height="450" Width="800" Icon="iconoHamburguesa.png" Loaded="Window_Loaded">
     <Grid>
-        
+        <Menu>
+            <!-- TODAVIA SIN FUNCIONES-->
+        </Menu>
+        <TabControl TabStripPlacement="Top">
+            <TabItem Header="_Tabla General">
+                <Canvas Background="LightGray" Margin="10" Name="canvasTablaGeneral">
+                    
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Tabla Diaria">
+                <Canvas Background="LightGray" Margin="10" Name="canvasTablaDiaria">
+
+                </Canvas>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

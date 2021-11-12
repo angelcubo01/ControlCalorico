@@ -10,28 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TrabajoFinal_IGU_70926454C
 {
     /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
+    /// Lógica de interacción para TablaDatos.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TablaDatos : Window
     {
-        public MainWindow()
+        public TablaDatos()
         {
             InitializeComponent();
-            
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            TablaDatos td = new TablaDatos();
-
-            td.ShowDialog();
-            td.Owner = this;
         }
     }
 }
