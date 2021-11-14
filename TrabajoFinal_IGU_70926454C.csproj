@@ -55,9 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddDatos.xaml.cs">
+      <DependentUpon>AddDatos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Comidas.cs" />
+    <Compile Include="IntTextBox.cs" />
     <Compile Include="TablaDatos.xaml.cs">
       <DependentUpon>TablaDatos.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddDatos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -30,7 +30,7 @@ namespace TrabajoFinal_IGU_70926454C
         {
             TablaDatos td = new TablaDatos();
 
-            td.ShowDialog();
+            td.Show();
             td.Owner = this;
         }
     }

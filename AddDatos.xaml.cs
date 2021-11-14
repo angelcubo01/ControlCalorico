@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace TrabajoFinal_IGU_70926454C
 {
     /// <summary>
-    /// Lógica de interacción para TablaDatos.xaml
+    /// Lógica de interacción para AddDatos.xaml
     /// </summary>
-    public partial class TablaDatos : Window
+    public partial class AddDatos : Window
     {
-        AddDatos addDatos;
-        public TablaDatos()
+        public AddDatos()
         {
             InitializeComponent();
-        }
-
-        private void btnFecha_Click(object sender, RoutedEventArgs e)
-        {
-            if (addDatos == null)
-            {
-                addDatos = new AddDatos();
-            }
-            addDatos.ShowDialog();
         }
     }
 }

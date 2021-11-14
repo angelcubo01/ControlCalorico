@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrabajoFinal_IGU_70926454C"
         mc:Ignorable="d"
-        Title="Tabla de ingestas" Height="450" Width="400" Icon="iconoHamburguesa.png">
+        Title="Tabla de ingestas" Height="450" Width="400" Icon="iconoHamburguesa.png"  Background="#FFE4E4E4">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -21,7 +21,11 @@
             </ListView.View>
             
         </ListView>
-        <Label Grid.Row="1" Content="Selecciona un día para ver en detalle" HorizontalAlignment="Center" FontWeight="Bold"></Label>
+        <StackPanel  Grid.Row="1" Margin="10,0" HorizontalAlignment="Center">
+            <Button Name="btnFecha" Content="Añadir fecha" Click="btnFecha_Click"></Button>
+            <Label  Content="Selecciona un día para ver en detalle" HorizontalAlignment="Center" FontWeight="Bold"></Label>
+        </StackPanel>
+        
         <ListView Grid.Row="2" Margin="10" Name="listViewDiario">
             <ListView.View>
                 <GridView>

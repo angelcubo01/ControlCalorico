@@ -1,0 +1,45 @@
+﻿<Window x:Class="TrabajoFinal_IGU_70926454C.AddDatos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrabajoFinal_IGU_70926454C"
+        xmlns:custom="clr-namespace:TrabajoFinal_IGU_70926454C"
+        mc:Ignorable="d"
+        Title="Introduce datos de ingesta" Height="450" Width="400" Icon="iconoHamburguesa.png" Background="#FFE4E4E4">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center"  >Introduce la fecha:</Label>
+        <Calendar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="20"></Calendar>
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center">Introduce las calorias de cada ingesta:</Label>
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="10,0">Desayuno:</Label>
+        <custom:IntTextBox Grid.Row="3"  Grid.Column="1" Width="78"  Height="auto" HorizontalAlignment="Center" x:Name="desayunoDato" Margin="10,5" BorderThickness="2"/>
+        <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="10,0">Almuerzo:</Label>
+        <custom:IntTextBox Grid.Row="4"  Grid.Column="1" Width="78"  Height="auto" HorizontalAlignment="Center" x:Name="almuerzoDato" Margin="10,5" BorderThickness="2"/>
+        <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Margin="10,0">Comida:</Label>
+        <custom:IntTextBox Grid.Row="5"  Grid.Column="1" Width="78"  Height="auto" HorizontalAlignment="Center" x:Name="comidaDato" Margin="10,5" BorderThickness="2"/>
+        <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Margin="10,0">Merienda:</Label>
+        <custom:IntTextBox Grid.Row="3"  Grid.Column="3" Width="78"  Height="auto" HorizontalAlignment="Center" x:Name="meriendaDato" Margin="10,5" BorderThickness="2"/>
+        <Label Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" Margin="10,0">Cena:</Label>
+        <custom:IntTextBox Grid.Row="4"  Grid.Column="3" Width="78"  Height="auto" HorizontalAlignment="Center" x:Name="cenaDato" Margin="10,5" BorderThickness="2"/>
+        <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" Margin="10,0">Otras:</Label>
+        <custom:IntTextBox Grid.Row="5"  Grid.Column="3" Width="78"  Height="auto" HorizontalAlignment="Center" x:Name="otrosDato" Margin="10,5" BorderThickness="2"/>
+
+        <Button Grid.Row="6"  Grid.Column="1" Margin="10,21,10,-21">Guardar</Button>
+        <Button Grid.Row="6"  Grid.Column="2" Margin="10,21,10,-21">Descartar</Button>
+    </Grid>
+</Window>
