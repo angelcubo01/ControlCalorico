@@ -8,29 +8,39 @@
         Title="Tabla de ingestas" Height="450" Width="400" Icon="iconoHamburguesa.png"  Background="#FFE4E4E4">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition />
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" Margin="10" Name="listViewGeneral">
+        <ListView Grid.Row="0" Margin="10" Name="listViewGeneral" SelectionChanged="ListViewGeneral_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="80" Header="DÍA"></GridViewColumn>
-                    <GridViewColumn Width="150" Header="Calorias Totales"></GridViewColumn>
+                    <GridViewColumn Width="200" Header="Día" DisplayMemberBinding="{Binding Fecha}" ></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Calorias Totales" DisplayMemberBinding="{Binding Total}"></GridViewColumn>
+                    <GridViewColumn Width="50" Header="Dibujar">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="5, 0" HorizontalAlignment="Center"  IsChecked="{Binding Dibujar}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
             
         </ListView>
         <StackPanel  Grid.Row="1" Margin="10,0" HorizontalAlignment="Center">
-            <Button Name="btnFecha" Content="Añadir fecha" Click="btnFecha_Click"></Button>
-            <Label  Content="Selecciona un día para ver en detalle" HorizontalAlignment="Center" FontWeight="Bold"></Label>
+            <Button Name="btnFecha" Content="Añadir fecha" Click="BtnFecha_Click"></Button>
+            <Button Name="btnFechaMod" Margin="0,2" IsEnabled="False" Content="Modifica la fecha" Click="BtnFechaMod_Click"></Button>
+            <Button Name="btnFechaElim" Margin="0,2" IsEnabled="False" Content="Elimina la fecha" Click="BtnFechaElim_Click"></Button>
+            <Label  Content="Selecciona un día para ver en detalle" Name="fechaSelec" HorizontalAlignment="Center" FontWeight="Bold"></Label>
+            
         </StackPanel>
         
-        <ListView Grid.Row="2" Margin="10" Name="listViewDiario">
+        <ListView Grid.Row="2" Margin="10" Name="listViewDiario" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="150" Header="COMIDA"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Calorias"></GridViewColumn>
+                    <GridViewColumn Width="245" Header="Ingesta" DisplayMemberBinding="{Binding TipoComida}"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Calorias" DisplayMemberBinding="{Binding Calorias}"></GridViewColumn>
                 </GridView>
             </ListView.View>
 

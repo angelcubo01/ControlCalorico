@@ -24,8 +24,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center"  >Introduce la fecha:</Label>
-        <Calendar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="20"></Calendar>
-        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center">Introduce las calorias de cada ingesta:</Label>
+        <Calendar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="20" Name="fechaDato"></Calendar>
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Name="errMsg" HorizontalAlignment="Center">Introduce las calorias de cada ingesta:</Label>
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="10,0">Desayuno:</Label>
         <custom:IntTextBox Grid.Row="3"  Grid.Column="1" Width="78"  Height="auto" HorizontalAlignment="Center" x:Name="desayunoDato" Margin="10,5" BorderThickness="2"/>
         <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Margin="10,0">Almuerzo:</Label>
@@ -39,7 +39,7 @@
         <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" Margin="10,0">Otras:</Label>
         <custom:IntTextBox Grid.Row="5"  Grid.Column="3" Width="78"  Height="auto" HorizontalAlignment="Center" x:Name="otrosDato" Margin="10,5" BorderThickness="2"/>
 
-        <Button Grid.Row="6"  Grid.Column="1" Margin="10,21,10,-21">Guardar</Button>
-        <Button Grid.Row="6"  Grid.Column="2" Margin="10,21,10,-21">Descartar</Button>
+        <Button Grid.Row="6" Name="guardarBtn" Grid.Column="1" Click="GuardarBtn_Click" Margin="10,21,10,-21">Guardar</Button>
+        <Button Grid.Row="6" Name="descartarBtn"  Grid.Column="2" Click="DescartarBtn_Click" Margin="10,21,10,-21">Descartar</Button>
     </Grid>
 </Window>
