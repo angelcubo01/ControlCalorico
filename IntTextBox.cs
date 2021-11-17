@@ -19,6 +19,7 @@ namespace TrabajoFinal_IGU_70926454C
 
         public int IntValue
         {
+
             get
             {
                 return Int32.Parse(this.Text);

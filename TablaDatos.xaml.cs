@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.IO;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace TrabajoFinal_IGU_70926454C
 {
@@ -59,7 +54,28 @@ namespace TrabajoFinal_IGU_70926454C
         }
         private void BtnFechaMod_Click(object sender, RoutedEventArgs e)
         {
-            
+            addDatos = new AddDatos();
+            Comidas comidaSelec = (Comidas)listViewGeneral.SelectedItem;
+            addDatos.fechaLabel.Content = "Modifica las ingestas del día " + comidaSelec.Fecha;
+            DateTime fecha =;//TODO MAL HECHO
+            addDatos.fechaDato.SelectedDate = fecha.ToString("d");
+            addDatos.desayunoDato.Text = comidaSelec.Desayuno.ToString();
+            addDatos.almuerzoDato.Text = comidaSelec.Almuerzo.ToString();
+            addDatos.comidaDato.Text = comidaSelec.Comida.ToString();
+            addDatos.meriendaDato.Text = comidaSelec.Merienda.ToString();
+            addDatos.cenaDato.Text = comidaSelec.Cena.ToString();
+            addDatos.otrosDato.Text = comidaSelec.Otros.ToString();
+            addDatos.ShowDialog();
+            addDatos.Owner = this;
+            if (addDatos.DialogResult == true)
+            {
+                comidaSelec.Desayuno = addDatos.desayunoDato.IntValue;
+                comidaSelec.Almuerzo = addDatos.almuerzoDato.IntValue;
+                comidaSelec.Comida = addDatos.comidaDato.IntValue;
+                comidaSelec.Merienda = addDatos.meriendaDato.IntValue;
+                comidaSelec.Cena = addDatos.cenaDato.IntValue;
+                comidaSelec.Otros = addDatos.otrosDato.IntValue;
+            }
         }
         private void BtnFechaElim_Click(object sender, RoutedEventArgs e)
         {
@@ -102,6 +118,66 @@ namespace TrabajoFinal_IGU_70926454C
 
         }
 
-        
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if(sender == exportarDatos)
+            {
+                SaveFileDialog exportDialog = new SaveFileDialog()
+                {
+                    Title = "Exportar datos de ingestas",
+                    FileName = "Ingestas",
+                    DefaultExt = ".contCal",
+                    Filter = "Archivo de Control de Calorias (*.contCal)|*.contCal",
+                    AddExtension = true
+                };
+
+
+                if ((bool)exportDialog.ShowDialog())
+                {
+                    string jsonString = JsonConvert.SerializeObject(listaComidas);
+                    File.WriteAllText(exportDialog.FileName, jsonString);
+
+
+                }
+            }else if (sender == importarDatos)
+            {
+                OpenFileDialog importDialog = new OpenFileDialog()
+                {
+                    Title = "Importar datos de ingestas",
+                    FileName = "Ingestas",
+                    DefaultExt = ".contCal",
+                    Filter = "Archivo de Control de Calorias (*.contCal)|*.contCal",
+                    AddExtension = true
+                };
+
+
+                if ((bool)importDialog.ShowDialog())
+                {
+                    if (importDialog.FileName.EndsWith(".contCal")) //El archivo es del tipo del programa
+                    {
+                        listaComidas.Clear();
+                        List <Comidas> listaTempComidas;
+                        string file = File.ReadAllText(importDialog.FileName);
+                        listaTempComidas = JsonConvert.DeserializeObject<List<Comidas>>(file);
+                        foreach(Comidas comida in listaTempComidas)
+                        {
+                            listaComidas.Add(comida);
+                        }
+                    }
+                }
+            }else if(sender == vaciarDatos)
+            {
+                string msg = "¿Estás seguro de eliminar todos los registros?";
+                string titulo = "¿Quieres eliminar?";
+                MessageBoxButton btn = MessageBoxButton.YesNo;
+                MessageBoxImage icon = MessageBoxImage.Question;
+                MessageBoxResult result = MessageBox.Show(msg, titulo, btn, icon);
+                if (result == MessageBoxResult.Yes)
+                {
+                    listaComidas.Clear();
+                }
+            }
+        }
+
     }
 }

@@ -23,7 +23,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center"  >Introduce la fecha:</Label>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" Name="fechaLabel" >Introduce la fecha:</Label>
         <Calendar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="20" Name="fechaDato"></Calendar>
         <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Name="errMsg" HorizontalAlignment="Center">Introduce las calorias de cada ingesta:</Label>
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Margin="10,0">Desayuno:</Label>

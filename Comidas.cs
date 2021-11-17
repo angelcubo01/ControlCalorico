@@ -27,6 +27,17 @@ namespace TrabajoFinal_IGU_70926454C
             otrosPriv = otros;
             total = desayuno + almuerzo + comida + merienda + cena + otros;
         }
+        public Comidas(string fecha, int desayuno, int almuerzo, int comida, int merienda, int cena, int otros)
+        {
+            fechaPriv = fecha;
+            desayunoPriv = desayuno;
+            almuerzoPriv = almuerzo;
+            comidaPriv = comida;
+            meriendaPriv = merienda;
+            cenaPriv = cena;
+            otrosPriv = otros;
+            total = desayuno + almuerzo + comida + merienda + cena + otros;
+        }
         //Propiedades
         public string Fecha
         {
