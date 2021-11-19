@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,23 +12,13 @@ namespace TrabajoFinal_IGU_70926454C
     public class Comidas : INotifyPropertyChanged
     {
         private int desayunoPriv, almuerzoPriv, comidaPriv, meriendaPriv, cenaPriv, otrosPriv;
-        private string fechaPriv;
+        private DateTime fechaPriv;
         private int total;
+        private int mayorIngesta; //PARA DIBUJO DIARIO
         private bool dibujar;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Comidas(DateTime fecha, int desayuno, int almuerzo, int comida, int merienda, int cena, int otros)
-        {
-            fechaPriv = fecha.ToString("d");
-            desayunoPriv = desayuno;
-            almuerzoPriv = almuerzo;
-            comidaPriv = comida;
-            meriendaPriv = merienda;
-            cenaPriv = cena;
-            otrosPriv = otros;
-            total = desayuno + almuerzo + comida + merienda + cena + otros;
-        }
-        public Comidas(string fecha, int desayuno, int almuerzo, int comida, int merienda, int cena, int otros)
         {
             fechaPriv = fecha;
             desayunoPriv = desayuno;
@@ -37,12 +28,33 @@ namespace TrabajoFinal_IGU_70926454C
             cenaPriv = cena;
             otrosPriv = otros;
             total = desayuno + almuerzo + comida + merienda + cena + otros;
+            mayorIngesta = calcularMayor();
         }
+        [JsonConstructor]
+        public Comidas(string fecha, int desayuno, int almuerzo, int comida, int merienda, int cena, int otros)
+        {
+            fechaPriv = DateTime.Parse(fecha);
+            desayunoPriv = desayuno;
+            almuerzoPriv = almuerzo;
+            comidaPriv = comida;
+            meriendaPriv = merienda;
+            cenaPriv = cena;
+            otrosPriv = otros;
+            total = desayuno + almuerzo + comida + merienda + cena + otros;
+            mayorIngesta = calcularMayor();
+        }
+
+        private int calcularMayor()
+        {
+            int [] listIngestas = new int[] { desayunoPriv, almuerzoPriv, comidaPriv, meriendaPriv, cenaPriv,otrosPriv };
+            return listIngestas.Max();
+        }
+
         //Propiedades
         public string Fecha
         {
-            get { return fechaPriv; }
-            set { fechaPriv = value; OnPropertyChanged("Fecha"); }
+            get { return fechaPriv.ToString("d"); }
+            set { fechaPriv = DateTime.Parse(value); OnPropertyChanged("Fecha"); }
         }
         public int Desayuno
         {
@@ -84,10 +96,18 @@ namespace TrabajoFinal_IGU_70926454C
             get { return dibujar; }
             set { dibujar = value; OnPropertyChanged("Dibujar"); }
         }
-
+        public int Mayor
+        {
+            get { return mayorIngesta; }
+        }
         void OnPropertyChanged(String propertyname)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+            total = desayunoPriv + almuerzoPriv + comidaPriv + meriendaPriv + cenaPriv + otrosPriv;
+            mayorIngesta = calcularMayor();
         }
+
+
+       
     }
 }

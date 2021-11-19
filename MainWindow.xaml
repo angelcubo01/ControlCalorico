@@ -5,20 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrabajoFinal_IGU_70926454C"
         mc:Ignorable="d"
-        Title="Control de Calorias" Height="450" Width="800" Icon="iconoHamburguesa.png" Loaded="Window_Loaded">
+        Title="Control de Calorias" Height="450" Width="800" Icon="iconoHamburguesa.png" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
     <Grid>
-        <Menu>
-            <!-- TODAVIA SIN FUNCIONES-->
-        </Menu>
         <TabControl TabStripPlacement="Top">
-            <TabItem Header="_Tabla General">
+            <TabItem Header="_Tabla General" Name="tablaGeneral">
                 <Canvas Background="LightGray" Margin="10" Name="canvasTablaGeneral">
-                    
+
                 </Canvas>
             </TabItem>
-            <TabItem Header="Tabla Diaria">
-                <Canvas Background="LightGray" Margin="10" Name="canvasTablaDiaria">
-
+            <TabItem Header="Tabla Diaria" Name="tablaDiaria">
+                <Canvas Background="LightGray" Margin="10" Name="canvasTablaDiaria" Loaded="canvasTablaDiaria_Loaded">
                 </Canvas>
             </TabItem>
         </TabControl>
