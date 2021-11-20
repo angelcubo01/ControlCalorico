@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,18 +29,58 @@ namespace TrabajoFinal_IGU_70926454C
         public ComidaSelecionadaEventArgs(Comidas c) { Lacomida = c; }
         
     }
+    public class ComidaDibujarGeneralEventArgs : EventArgs
+    {
+        public List <Comidas> ComidasDibujables { get; set; }
+        public ComidaDibujarGeneralEventArgs(List <Comidas> c) {
+
+            ComidasDibujables = c;
+
+        }
+
+    }
+
     public delegate void ComidaSelecionadaEventHandler(Object sender, ComidaSelecionadaEventArgs e);
+    public delegate void ComidaDibujarGeneralEventHandler(Object sender, ComidaDibujarGeneralEventArgs e);
+
+
     public partial class TablaDatos : Window
     {
         AddDatos addDatos;
         ObservableCollection<Comidas> listaComidas;
         public event ComidaSelecionadaEventHandler NuevaSelecionComida;
-        
+        public event ComidaDibujarGeneralEventHandler NuevaSelecionGeneral;
+
+
         public TablaDatos()
         {
             InitializeComponent();
             listaComidas = new ObservableCollection<Comidas>();
             listViewGeneral.ItemsSource = listaComidas;
+            listaComidas.CollectionChanged += ListaComidas_CollectionChanged;
+            
+        }
+
+        private void ListaComidas_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+           
+            obtenerSelecionesEvento();
+        }
+
+        private void obtenerSelecionesEvento()
+        {
+            List<Comidas> comidaTemp = new List<Comidas>();
+            foreach (Comidas c in listaComidas)
+            {
+                if (c.Dibujar == true)
+                {
+                    comidaTemp.Add(c);
+                }
+            }
+            if (listaComidas.Count > 0)
+            {
+                NuevaSelecionGeneral?.Invoke(this, new ComidaDibujarGeneralEventArgs(comidaTemp));
+            }
         }
 
         private void BtnFecha_Click(object sender, RoutedEventArgs e)
@@ -82,6 +123,8 @@ namespace TrabajoFinal_IGU_70926454C
                 comidaSelec.Otros = addDatos.otrosDato.IntValue;
                 listViewGeneral.Items.Refresh();
                 AgregarListViewDiario();
+                NuevaSelecionComida?.Invoke(this, new ComidaSelecionadaEventArgs(comidaSelec)); //MANDA AL MAINWINDOWS
+                obtenerSelecionesEvento();
             }
         }
         private void BtnFechaElim_Click(object sender, RoutedEventArgs e)
@@ -96,6 +139,7 @@ namespace TrabajoFinal_IGU_70926454C
             {
                 listaComidas.Remove((Comidas)listViewGeneral.SelectedItem);
             }
+            NuevaSelecionComida?.Invoke(this, new ComidaSelecionadaEventArgs(comidaSelecionada)); //MANDA AL MAINWINDOWS
         }
 
         private void ListViewGeneral_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -116,8 +160,10 @@ namespace TrabajoFinal_IGU_70926454C
                 AgregarListViewDiario();
                 
             }
-
-            NuevaSelecionComida(this, new ComidaSelecionadaEventArgs(comidaSelecionada)); //MANDA AL MAINWINDOWS
+            if(NuevaSelecionComida != null)
+            {
+                NuevaSelecionComida(this, new ComidaSelecionadaEventArgs(comidaSelecionada)); //MANDA AL MAINWINDOWS
+            }
         }
 
         private void AgregarListViewDiario()
@@ -190,5 +236,21 @@ namespace TrabajoFinal_IGU_70926454C
             }
         }
 
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+            List<Comidas> comidaTemp = new List<Comidas>();
+            foreach (Comidas c in listaComidas)
+            {
+                if (c.Dibujar == true)
+                {
+                    comidaTemp.Add(c);
+                }
+            }
+            if (listaComidas.Count > 0)
+            {
+                NuevaSelecionGeneral?.Invoke(this, new ComidaDibujarGeneralEventArgs(comidaTemp));
+            }
+        }
     }
 }

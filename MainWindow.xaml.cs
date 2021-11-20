@@ -30,6 +30,7 @@ namespace TrabajoFinal_IGU_70926454C
         //
 
         Comidas comidaSelec;
+        List<Comidas> comidasADibujar;
         public MainWindow()
         {
             InitializeComponent();
@@ -43,6 +44,130 @@ namespace TrabajoFinal_IGU_70926454C
             td.Show();
             td.Owner = this;
             td.NuevaSelecionComida += Td_nuevaSelecionComida;
+            td.NuevaSelecionGeneral += Td_NuevaSelecionGeneral;
+        }
+
+        private void Td_NuevaSelecionGeneral(object sender, ComidaDibujarGeneralEventArgs e)
+        {
+            if(e.ComidasDibujables != null)
+            {
+                canvasTablaGeneral.Children.Clear();
+                DibujarGeneral(e.ComidasDibujables);
+                comidasADibujar = e.ComidasDibujables;
+            }
+        }
+
+        private void DibujarGeneral(List<Comidas> comidasDibujables)
+        {
+            if (tablaGeneral.IsSelected && comidasDibujables != null && comidasDibujables.Count > 0)
+            {
+                Line ejeX = new Line
+                {
+                    X1 = 50,
+                    Y1 = 50, //PUNTO 1
+                    X2 = 50,
+                    Y2 = canvasTablaGeneral.ActualHeight - 50,
+                    Stroke = Brushes.Black
+                };
+                canvasTablaGeneral.Children.Add(ejeX);
+                Line ejeY = new Line
+                {
+                    X1 = 50,
+                    Y1 = canvasTablaGeneral.ActualHeight - 50, //PUNTO 2
+                    X2 = canvasTablaGeneral.ActualWidth - 50,
+                    Y2 = canvasTablaGeneral.ActualHeight - 50,// PUNTO 3
+                    Stroke = Brushes.Black
+                };
+                canvasTablaGeneral.Children.Add(ejeY);
+                double altoRectangulo;
+                int maximo = 0;
+                foreach (Comidas c in comidasDibujables)
+                {
+                    if (c.Total > maximo) maximo = c.Total;
+                }
+                Label maximoLabel = new Label
+                {
+                    Content = maximo.ToString() + " cal"
+                };
+                Canvas.SetTop(maximoLabel, 25);
+                Canvas.SetLeft(maximoLabel,2);
+                canvasTablaGeneral.Children.Add(maximoLabel);
+                int anchoRectangulos = (int)(canvasTablaGeneral.ActualWidth - 100) / comidasDibujables.Count();
+                int tam = comidasDibujables.Count();
+                int posicion = 0;
+                foreach (Comidas c in comidasDibujables)
+                {
+                    Rectangle desayunoRec = new Rectangle();
+                    desayunoRec.Fill = brochaDesayuno;
+                    desayunoRec.Width = anchoRectangulos;
+                    altoRectangulo = (c.Desayuno * (canvasTablaGeneral.ActualHeight - 100)) / maximo;
+                    desayunoRec.Height = altoRectangulo;
+                    Canvas.SetTop(desayunoRec, canvasTablaGeneral.ActualHeight - 50 - altoRectangulo);
+                    Canvas.SetLeft(desayunoRec, 50 + posicion*anchoRectangulos);
+                    
+
+                    Rectangle almuerzoRec = new Rectangle();
+                    almuerzoRec.Fill = brochaAlmuerzo;
+                    almuerzoRec.Width = anchoRectangulos;
+                    altoRectangulo = ((c.Almuerzo * (canvasTablaGeneral.ActualHeight - 100) )/ maximo)+altoRectangulo;
+                    almuerzoRec.Height = Math.Round(altoRectangulo);
+                    Canvas.SetTop(almuerzoRec, canvasTablaGeneral.ActualHeight - 50 - altoRectangulo);
+                    Canvas.SetLeft(almuerzoRec, 50 + posicion * anchoRectangulos);
+                    
+
+                    Rectangle comidaRec = new Rectangle();
+                    comidaRec.Fill = brochaComida;
+                    comidaRec.Width = anchoRectangulos;
+                    altoRectangulo = ((c.Comida * (canvasTablaGeneral.ActualHeight - 100)) / maximo) + altoRectangulo;
+                    comidaRec.Height = Math.Round(altoRectangulo);
+                    Canvas.SetTop(comidaRec, canvasTablaGeneral.ActualHeight - 50 - altoRectangulo);
+                    Canvas.SetLeft(comidaRec, 50 + posicion * anchoRectangulos);
+                    
+
+                    Rectangle meriendaRec = new Rectangle();
+                    meriendaRec.Fill = brochaMerienda;
+                    meriendaRec.Width = anchoRectangulos;
+                    altoRectangulo = ((c.Merienda * (canvasTablaGeneral.ActualHeight - 100)) / maximo) + altoRectangulo;
+                    meriendaRec.Height = Math.Round(altoRectangulo);
+                    Canvas.SetTop(meriendaRec, canvasTablaGeneral.ActualHeight - 50 - altoRectangulo);
+                    Canvas.SetLeft(meriendaRec, 50 + posicion * anchoRectangulos);
+                    
+
+                    Rectangle cenaRec = new Rectangle();
+                    cenaRec.Fill = brochaCena;
+                    cenaRec.Width = anchoRectangulos;
+                    altoRectangulo = ((c.Cena * (canvasTablaGeneral.ActualHeight - 100)) / maximo) + altoRectangulo;
+                    cenaRec.Height = Math.Round(altoRectangulo);
+                    Canvas.SetTop(cenaRec, canvasTablaGeneral.ActualHeight - 50 - altoRectangulo);
+                    Canvas.SetLeft(cenaRec, 50 + posicion * anchoRectangulos);
+                    
+
+                    Rectangle otrosRec = new Rectangle();
+                    otrosRec.Fill = brochaOtros;
+                    otrosRec.Width = anchoRectangulos;
+                    altoRectangulo = ((c.Otros * (canvasTablaGeneral.ActualHeight - 100)) / maximo) + altoRectangulo;
+                    otrosRec.Height = Math.Round(altoRectangulo);
+                    Canvas.SetTop(otrosRec, canvasTablaGeneral.ActualHeight - 50 - altoRectangulo);
+                    Canvas.SetLeft(otrosRec, 50 + posicion * anchoRectangulos);
+
+                    canvasTablaGeneral.Children.Add(otrosRec);
+                    canvasTablaGeneral.Children.Add(cenaRec);
+                    canvasTablaGeneral.Children.Add(meriendaRec);
+                    canvasTablaGeneral.Children.Add(comidaRec);
+                    canvasTablaGeneral.Children.Add(almuerzoRec);
+                    canvasTablaGeneral.Children.Add(desayunoRec);
+                    Label fechaLabel = new Label
+                    {
+                        Content = c.Fecha
+                    };
+                    Canvas.SetTop(fechaLabel, canvasTablaGeneral.ActualHeight - 50);
+                    Canvas.SetLeft(fechaLabel, 55 + posicion * anchoRectangulos);
+                    RotateTransform rt = new RotateTransform(30);
+                    fechaLabel.RenderTransform = rt;
+                    canvasTablaGeneral.Children.Add(fechaLabel);
+                    posicion++;
+                }
+            }
         }
 
         private void Td_nuevaSelecionComida(object sender, ComidaSelecionadaEventArgs e)
@@ -52,14 +177,14 @@ namespace TrabajoFinal_IGU_70926454C
             {
                 canvasTablaDiaria.Children.Clear();
                 DibujarIndivdual(e.Lacomida);
-                comidaSelec = e.Lacomida;
+
             }
 
         }
 
         private void DibujarIndivdual(Comidas lacomida)
         {
-            if (tablaDiaria.IsSelected)
+            if (tablaDiaria.IsSelected && lacomida !=null)
             {
                 int anchoRectangulos = DibujarEjesIndividual();
 
@@ -201,10 +326,18 @@ namespace TrabajoFinal_IGU_70926454C
             return tamanoEtiquetaVertical;
         }
 
-        private void canvasTablaDiaria_Loaded(object sender, RoutedEventArgs e)
+        private void Canvas_Loaded(object sender, RoutedEventArgs e)
         {
-            canvasTablaDiaria.Children.Clear();
-            DibujarEjesIndividual();
+            if (canvasTablaDiaria == sender)
+            {
+                canvasTablaDiaria.Children.Clear();
+                DibujarIndivdual(comidaSelec);
+            }
+            else if (canvasTablaGeneral == sender)
+            {
+                canvasTablaGeneral.Children.Clear();
+                DibujarGeneral(comidasADibujar);
+            }
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -213,6 +346,10 @@ namespace TrabajoFinal_IGU_70926454C
             {
                 canvasTablaDiaria.Children.Clear();
                 DibujarIndivdual(comidaSelec);
+            } else if (tablaGeneral.IsSelected)
+            {
+                canvasTablaGeneral.Children.Clear();
+                DibujarGeneral(comidasADibujar);
             }
         }
     }

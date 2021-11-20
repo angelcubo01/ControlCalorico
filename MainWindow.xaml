@@ -9,12 +9,12 @@
     <Grid>
         <TabControl TabStripPlacement="Top">
             <TabItem Header="_Tabla General" Name="tablaGeneral">
-                <Canvas Background="LightGray" Margin="10" Name="canvasTablaGeneral">
+                <Canvas Background="LightGray" Margin="10" Name="canvasTablaGeneral" Loaded="Canvas_Loaded">
 
                 </Canvas>
             </TabItem>
             <TabItem Header="Tabla Diaria" Name="tablaDiaria">
-                <Canvas Background="LightGray" Margin="10" Name="canvasTablaDiaria" Loaded="canvasTablaDiaria_Loaded">
+                <Canvas Background="LightGray" Margin="10" Name="canvasTablaDiaria" Loaded="Canvas_Loaded">
                 </Canvas>
             </TabItem>
         </TabControl>
