@@ -7,10 +7,49 @@
         mc:Ignorable="d"
         Title="Control de Calorias" Height="450" Width="800" Icon="iconoHamburguesa.png" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
     <Grid>
-        <TabControl TabStripPlacement="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" HorizontalAlignment="Right">
+            <MenuItem Header="_Leyenda">
+                <MenuItem Header="Desayuno" >
+                    <MenuItem.Icon >
+                        <Rectangle Fill="#68B9DE"></Rectangle>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Almuerzo" >
+                    <MenuItem.Icon >
+                        <Rectangle Fill="#219EBC"></Rectangle>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Comida" >
+                    <MenuItem.Icon >
+                        <Rectangle Fill="#023047"></Rectangle>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Merienda" >
+                    <MenuItem.Icon >
+                        <Rectangle Fill="#FEB703"></Rectangle>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Cena" >
+                    <MenuItem.Icon >
+                        <Rectangle Fill="#FB8500"></Rectangle>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Otros" >
+                    <MenuItem.Icon >
+                        <Rectangle Fill="#8D4C02"></Rectangle>
+                    </MenuItem.Icon>
+                </MenuItem>
+
+            </MenuItem>
+        </Menu>
+        <TabControl TabStripPlacement="Top" Grid.Row="1">
             <TabItem Header="_Tabla General" Name="tablaGeneral">
                 <Canvas Background="LightGray" Margin="10" Name="canvasTablaGeneral" Loaded="Canvas_Loaded">
-
+        
                 </Canvas>
             </TabItem>
             <TabItem Header="Tabla Diaria" Name="tablaDiaria">

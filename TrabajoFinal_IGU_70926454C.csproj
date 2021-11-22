@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="Comidas.cs" />
     <Compile Include="IntTextBox.cs" />
+    <Compile Include="ObjetoListViewDiario.cs" />
     <Compile Include="TablaDatos.xaml.cs">
       <DependentUpon>TablaDatos.xaml</DependentUpon>
     </Compile>

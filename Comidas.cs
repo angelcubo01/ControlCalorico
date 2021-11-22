@@ -1,11 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+/// <summary>
+/// Ángel Picado Cuadrado -- 70926454C 
+/// Grupo PB1 -- IGU 2021/2022
+/// angel.piccua@usal.es - GII USAL
+/// </summary>
+
 
 namespace TrabajoFinal_IGU_70926454C
 {
@@ -28,7 +31,7 @@ namespace TrabajoFinal_IGU_70926454C
             cenaPriv = cena;
             otrosPriv = otros;
             total = desayuno + almuerzo + comida + merienda + cena + otros;
-            mayorIngesta = calcularMayor();
+            mayorIngesta = CalcularMayor();
         }
         [JsonConstructor]
         public Comidas(string fecha, int desayuno, int almuerzo, int comida, int merienda, int cena, int otros)
@@ -41,10 +44,10 @@ namespace TrabajoFinal_IGU_70926454C
             cenaPriv = cena;
             otrosPriv = otros;
             total = desayuno + almuerzo + comida + merienda + cena + otros;
-            mayorIngesta = calcularMayor();
+            mayorIngesta = CalcularMayor();
         }
 
-        private int calcularMayor()
+        private int CalcularMayor()
         {
             int [] listIngestas = new int[] { desayunoPriv, almuerzoPriv, comidaPriv, meriendaPriv, cenaPriv,otrosPriv };
             return listIngestas.Max();
@@ -104,10 +107,7 @@ namespace TrabajoFinal_IGU_70926454C
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
             total = desayunoPriv + almuerzoPriv + comidaPriv + meriendaPriv + cenaPriv + otrosPriv;
-            mayorIngesta = calcularMayor();
+            mayorIngesta = CalcularMayor();
         }
-
-
-       
     }
 }

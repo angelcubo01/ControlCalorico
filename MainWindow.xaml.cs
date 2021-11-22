@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+/// <summary>
+/// Ángel Picado Cuadrado -- 70926454C 
+/// Grupo PB1 -- IGU 2021/2022
+/// angel.piccua@usal.es - GII USAL
+/// </summary>
 
 namespace TrabajoFinal_IGU_70926454C
 {
@@ -21,16 +20,16 @@ namespace TrabajoFinal_IGU_70926454C
     public partial class MainWindow : Window
     {
         //COLORES PARA LOS RECTANGULOS
-        Brush brochaDesayuno = new SolidColorBrush(Color.FromRgb(0x68, 0xb9, 0xde));
-        Brush brochaAlmuerzo = new SolidColorBrush(Color.FromRgb(0x21, 0x9e, 0xbc));
-        Brush brochaComida = new SolidColorBrush(Color.FromRgb(0x02, 0x30, 0x47));
-        Brush brochaMerienda = new SolidColorBrush(Color.FromRgb(0xfe, 0xb7, 0x03));
-        Brush brochaCena = new SolidColorBrush(Color.FromRgb(0xfb, 0x85, 0x00));
-        Brush brochaOtros = new SolidColorBrush(Color.FromRgb(0x8d, 0x4c, 0x02));
+        readonly Brush brochaDesayuno = new SolidColorBrush(Color.FromRgb(0x68, 0xb9, 0xde));
+        readonly Brush brochaAlmuerzo = new SolidColorBrush(Color.FromRgb(0x21, 0x9e, 0xbc));
+        readonly Brush brochaComida = new SolidColorBrush(Color.FromRgb(0x02, 0x30, 0x47));
+        readonly Brush brochaMerienda = new SolidColorBrush(Color.FromRgb(0xfe, 0xb7, 0x03));
+        readonly Brush brochaCena = new SolidColorBrush(Color.FromRgb(0xfb, 0x85, 0x00));
+        readonly Brush brochaOtros = new SolidColorBrush(Color.FromRgb(0x8d, 0x4c, 0x02));
         //
 
-        Comidas comidaSelec;
-        List<Comidas> comidasADibujar;
+        private Comidas comidaSelec;
+        private List<Comidas> comidasADibujar;
         public MainWindow()
         {
             InitializeComponent();
@@ -47,6 +46,8 @@ namespace TrabajoFinal_IGU_70926454C
             td.NuevaSelecionGeneral += Td_NuevaSelecionGeneral;
         }
 
+
+        //Llega un evento con el List<Comidas> que hay que dibujar
         private void Td_NuevaSelecionGeneral(object sender, ComidaDibujarGeneralEventArgs e)
         {
             if(e.ComidasDibujables != null)
@@ -56,11 +57,35 @@ namespace TrabajoFinal_IGU_70926454C
                 comidasADibujar = e.ComidasDibujables;
             }
         }
+        //Se ha seleccionado o deselecionado una fecha en la tabla
+        private void Td_nuevaSelecionComida(object sender, ComidaSelecionadaEventArgs e)
+        {
 
+            if (e.Lacomida != null)
+            {
+                canvasTablaDiaria.Children.Clear();
+                DibujarIndivdual(e.Lacomida);
+                comidaSelec = e.Lacomida;
+            }
+            else
+            {
+                canvasTablaDiaria.Children.Clear();
+            }
+
+        }
+
+        //Dibuja la tablaGeneral con las comidas selecionadas
         private void DibujarGeneral(List<Comidas> comidasDibujables)
         {
+            double altoRectangulo;
+            int maximo = 0;
+            
+            int posicion = 0;
+            int tamanioEjeX = (int)(canvasTablaGeneral.ActualHeight - 100);
             if (tablaGeneral.IsSelected && comidasDibujables != null && comidasDibujables.Count > 0)
             {
+                int tam = comidasDibujables.Count();
+                //DIBUJADO EJES
                 Line ejeX = new Line
                 {
                     X1 = 50,
@@ -79,22 +104,33 @@ namespace TrabajoFinal_IGU_70926454C
                     Stroke = Brushes.Black
                 };
                 canvasTablaGeneral.Children.Add(ejeY);
-                double altoRectangulo;
-                int maximo = 0;
+                
+                //DIBUJADO ETIQUETAS
                 foreach (Comidas c in comidasDibujables)
                 {
                     if (c.Total > maximo) maximo = c.Total;
                 }
-                Label maximoLabel = new Label
+                int tamEtiquetas = tamanioEjeX / 6;
+                for (int i = 0; i < 7; i++)
                 {
-                    Content = maximo.ToString() + " cal"
-                };
-                Canvas.SetTop(maximoLabel, 25);
-                Canvas.SetLeft(maximoLabel,2);
-                canvasTablaGeneral.Children.Add(maximoLabel);
+                    Label label = new Label();
+                    label.Content = (maximo / 6)*(6-i);
+                    Canvas.SetTop(label, 40+tamEtiquetas*i);
+                    Canvas.SetLeft(label, 2);
+                    Line line = new Line();
+                    line.X1 = 0;
+                    line.X2 = 9;
+                    line.Y1 = 0;
+                    line.Y2 = 0;
+                    line.Stroke = Brushes.Black;
+                    Canvas.SetTop(line, 51 + tamEtiquetas * i);
+                    Canvas.SetLeft(line, 42);
+                    canvasTablaGeneral.Children.Add(label);
+                    canvasTablaGeneral.Children.Add(line);
+                }
+
+                //DIBUJADO RECTANGULOS
                 int anchoRectangulos = (int)(canvasTablaGeneral.ActualWidth - 100) / comidasDibujables.Count();
-                int tam = comidasDibujables.Count();
-                int posicion = 0;
                 foreach (Comidas c in comidasDibujables)
                 {
                     Rectangle desayunoRec = new Rectangle();
@@ -156,6 +192,8 @@ namespace TrabajoFinal_IGU_70926454C
                     canvasTablaGeneral.Children.Add(comidaRec);
                     canvasTablaGeneral.Children.Add(almuerzoRec);
                     canvasTablaGeneral.Children.Add(desayunoRec);
+
+                    //DIBUJADO FECHA
                     Label fechaLabel = new Label
                     {
                         Content = c.Fecha
@@ -170,36 +208,16 @@ namespace TrabajoFinal_IGU_70926454C
             }
         }
 
-        private void Td_nuevaSelecionComida(object sender, ComidaSelecionadaEventArgs e)
-        {
-            //SE HA SELECIONADO UN ELEMENTO EN LA OTRA VENTANA
-            if (e.Lacomida != null)//SE HA SELECIONADO
-            {
-                canvasTablaDiaria.Children.Clear();
-                DibujarIndivdual(e.Lacomida);
+       
 
-            }
-
-        }
-
+        //Dibujado del elemento selecionado
         private void DibujarIndivdual(Comidas lacomida)
         {
             if (tablaDiaria.IsSelected && lacomida !=null)
             {
                 int anchoRectangulos = DibujarEjesIndividual();
-
-                //Etiqueta para el maximo
                 int maximo = lacomida.Mayor;
-                double altoRectangulo ;
-                Label maximoLabel = new Label
-                {
-                    Content = maximo.ToString()+" cal"
-                };
-                Canvas.SetTop(maximoLabel, 35);
-                Canvas.SetLeft(maximoLabel, 2);
-                canvasTablaDiaria.Children.Add(maximoLabel);
-                
-
+                double altoRectangulo;
 
                 Rectangle desayunoRec = new Rectangle();
                 desayunoRec.Fill = brochaDesayuno;
@@ -259,6 +277,7 @@ namespace TrabajoFinal_IGU_70926454C
 
         }
 
+        //Dibujado de ejes individuales y de sus etiquetas
         private int DibujarEjesIndividual()
         {
             Line ejeX = new Line
@@ -326,6 +345,7 @@ namespace TrabajoFinal_IGU_70926454C
             return tamanoEtiquetaVertical;
         }
 
+        //Administra cambios que puedan suceder
         private void Canvas_Loaded(object sender, RoutedEventArgs e)
         {
             if (canvasTablaDiaria == sender)
