@@ -1,4 +1,4 @@
-# PIII_baloncesto ![version](https://img.shields.io/badge/version-1.0-blue)
+# ControlCalorico ![version](https://img.shields.io/badge/version-1.0-blue)
 
 Trabajo de la asignatura Interfaces Gráficas de Usuario (IGU) en el 3º Curso del Grado de Ingeniería Informática USAL
 
