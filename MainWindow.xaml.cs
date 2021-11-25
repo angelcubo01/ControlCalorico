@@ -33,7 +33,6 @@ namespace TrabajoFinal_IGU_70926454C
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

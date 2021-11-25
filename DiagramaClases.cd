@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="TrabajoFinal_IGU_70926454C.AddDatos" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="11.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AddDatos.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TrabajoFinal_IGU_70926454C.Comidas" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="1.5" Width="6.25" />
+    <TypeIdentifier>
+      <HashCode>gAgAABAACAAAACEEIBAAEgCAgBIAQAAAAEgggABDAAA=</HashCode>
+      <FileName>Comidas.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TrabajoFinal_IGU_70926454C.IntTextBox">
+    <Position X="12.25" Y="6" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAEAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>IntTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrabajoFinal_IGU_70926454C.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="12" Y="11" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>EACAAAAAAAAQgAAAQoACACgJBAYAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="comidaSelec" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="comidasADibujar" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TrabajoFinal_IGU_70926454C.ObjetoListViewDiario">
+    <Position X="0.5" Y="1.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ObjetoListViewDiario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrabajoFinal_IGU_70926454C.ComidaSelecionadaEventArgs">
+    <Position X="12.5" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TablaDatos.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrabajoFinal_IGU_70926454C.ComidaDibujarGeneralEventArgs">
+    <Position X="16.25" Y="1.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TablaDatos.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrabajoFinal_IGU_70926454C.TablaDatos" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="11" Width="5.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAIAAAAAQAAAAAgIQAAQAAAQAAAAAACCEgCA=</HashCode>
+      <FileName>TablaDatos.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="addDatos" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="listaComidas" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="System.Windows.Controls.TextBox" Collapsed="true">
+    <Position X="14.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.EventArgs" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Window" Collapsed="true">
+    <Position X="8.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
