@@ -83,7 +83,7 @@ namespace TrabajoFinal_IGU_70926454C
             int tamanioEjeX = (int)(canvasTablaGeneral.ActualHeight - 100);
             if (tablaGeneral.IsSelected && comidasDibujables != null && comidasDibujables.Count > 0)
             {
-                int tam = comidasDibujables.Count();
+                
                 //DIBUJADO EJES
                 Line ejeX = new Line
                 {
@@ -134,8 +134,24 @@ namespace TrabajoFinal_IGU_70926454C
                 {
                     Rectangle desayunoRec = new Rectangle();
                     desayunoRec.Fill = brochaDesayuno;
+                    if (anchoRectangulos < 0)
+                    {
+                        MandarMensajeError();
+                        this.Height = 450;
+                        this.Width = 800;
+                        DibujarGeneral(comidasDibujables);
+                        return;
+                    }
                     desayunoRec.Width = anchoRectangulos;
                     altoRectangulo = (c.Desayuno * (canvasTablaGeneral.ActualHeight - 100)) / maximo;
+                    if (altoRectangulo < 0)
+                    {
+                        MandarMensajeError();
+                        this.Height = 450;
+                        this.Width = 800;
+                        DibujarGeneral(comidasDibujables);
+                        return;
+                    }
                     desayunoRec.Height = altoRectangulo;
                     Canvas.SetTop(desayunoRec, canvasTablaGeneral.ActualHeight - 50 - altoRectangulo);
                     Canvas.SetLeft(desayunoRec, 50 + posicion*anchoRectangulos);
@@ -207,7 +223,8 @@ namespace TrabajoFinal_IGU_70926454C
             }
         }
 
-       
+        
+
 
         //Dibujado del elemento selecionado
         private void DibujarIndivdual(Comidas lacomida)
@@ -220,8 +237,24 @@ namespace TrabajoFinal_IGU_70926454C
 
                 Rectangle desayunoRec = new Rectangle();
                 desayunoRec.Fill = brochaDesayuno;
+                if (anchoRectangulos < 0)
+                {
+                    MandarMensajeError();
+                    this.Height = 450;
+                    this.Width = 800;
+                    DibujarIndivdual(comidaSelec);
+                    return;
+                }
                 desayunoRec.Width = anchoRectangulos;
                 altoRectangulo = (lacomida.Desayuno * (canvasTablaDiaria.ActualHeight - 100) ) / maximo;
+                if (altoRectangulo < 0)
+                {
+                    MandarMensajeError();
+                    this.Height = 450;
+                    this.Width = 800;
+                    DibujarIndivdual(comidaSelec);
+                    return;
+                }
                 desayunoRec.Height = altoRectangulo;
                 Canvas.SetTop(desayunoRec, canvasTablaDiaria.ActualHeight - 50 - altoRectangulo);
                 Canvas.SetLeft(desayunoRec, 50);
@@ -231,6 +264,14 @@ namespace TrabajoFinal_IGU_70926454C
                 almuerzoRec.Fill = brochaAlmuerzo;
                 almuerzoRec.Width = anchoRectangulos;
                 altoRectangulo = (lacomida.Almuerzo * (canvasTablaDiaria.ActualHeight-100)) / maximo;
+                if (altoRectangulo < 0)
+                {
+                    MandarMensajeError();
+                    this.Height = 450;
+                    this.Width = 800;
+                    DibujarIndivdual(comidaSelec);
+                    return;
+                }
                 almuerzoRec.Height = Math.Round(altoRectangulo);
                 Canvas.SetTop(almuerzoRec, canvasTablaDiaria.ActualHeight - 50 - altoRectangulo);
                 Canvas.SetLeft(almuerzoRec, 50 + anchoRectangulos);
@@ -240,6 +281,14 @@ namespace TrabajoFinal_IGU_70926454C
                 comidaRec.Fill = brochaComida;
                 comidaRec.Width = anchoRectangulos;
                 altoRectangulo = (lacomida.Comida * (canvasTablaDiaria.ActualHeight - 100)) / maximo;
+                if (altoRectangulo < 0)
+                {
+                    MandarMensajeError();
+                    this.Height = 450;
+                    this.Width = 800;
+                    DibujarIndivdual(comidaSelec);
+                    return;
+                }
                 comidaRec.Height = Math.Round(altoRectangulo);
                 Canvas.SetTop(comidaRec, canvasTablaDiaria.ActualHeight - 50 - altoRectangulo);
                 Canvas.SetLeft(comidaRec, 50 + anchoRectangulos*2);
@@ -249,6 +298,14 @@ namespace TrabajoFinal_IGU_70926454C
                 meriendaRec.Fill = brochaMerienda;
                 meriendaRec.Width = anchoRectangulos;
                 altoRectangulo = (lacomida.Merienda * (canvasTablaDiaria.ActualHeight - 100)) / maximo;
+                if (altoRectangulo < 0)
+                {
+                    MandarMensajeError();
+                    this.Height = 450;
+                    this.Width = 800;
+                    DibujarIndivdual(comidaSelec);
+                    return;
+                }
                 meriendaRec.Height = Math.Round(altoRectangulo);
                 Canvas.SetTop(meriendaRec, canvasTablaDiaria.ActualHeight - 50 - altoRectangulo);
                 Canvas.SetLeft(meriendaRec, 50 + anchoRectangulos * 3);
@@ -258,6 +315,14 @@ namespace TrabajoFinal_IGU_70926454C
                 cenaRec.Fill = brochaCena;
                 cenaRec.Width = anchoRectangulos;
                 altoRectangulo = (lacomida.Cena * (canvasTablaDiaria.ActualHeight - 100)) / maximo;
+                if (altoRectangulo < 0)
+                {
+                    MandarMensajeError();
+                    this.Height = 450;
+                    this.Width = 800;
+                    DibujarIndivdual(comidaSelec);
+                    return;
+                }
                 cenaRec.Height = Math.Round(altoRectangulo);
                 Canvas.SetTop(cenaRec, canvasTablaDiaria.ActualHeight - 50 - altoRectangulo);
                 Canvas.SetLeft(cenaRec, 50 + anchoRectangulos * 4);
@@ -267,6 +332,14 @@ namespace TrabajoFinal_IGU_70926454C
                 otrosRec.Fill = brochaOtros;
                 otrosRec.Width = anchoRectangulos;
                 altoRectangulo = (lacomida.Otros * (canvasTablaDiaria.ActualHeight - 100)) / maximo;
+                if (altoRectangulo < 0)
+                {
+                    MandarMensajeError();
+                    this.Height = 450;
+                    this.Width = 800;
+                    DibujarIndivdual(comidaSelec);
+                    return;
+                }
                 otrosRec.Height = Math.Round(altoRectangulo);
                 Canvas.SetTop(otrosRec, canvasTablaDiaria.ActualHeight - 50 - altoRectangulo);
                 Canvas.SetLeft(otrosRec, 50 + anchoRectangulos * 5);
@@ -370,6 +443,16 @@ namespace TrabajoFinal_IGU_70926454C
                 canvasTablaGeneral.Children.Clear();
                 DibujarGeneral(comidasADibujar);
             }
+           
+
+        }
+        private void MandarMensajeError()
+        {
+            string msg = "La ventana no puede ser tan pequeña";
+            string titulo = "¡Error!";
+            MessageBoxButton btn = MessageBoxButton.OK;
+            MessageBoxImage icon = MessageBoxImage.Error;
+            MessageBox.Show(msg, titulo, btn, icon);
         }
     }
 }

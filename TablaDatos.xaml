@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrabajoFinal_IGU_70926454C"
         mc:Ignorable="d"
-        Title="Tabla de ingestas" Height="450" Width="400" Icon="iconoHamburguesa.png"  Background="#FFE4E4E4">
+        Title="Tabla de ingestas" Height="500" Width="430" Icon="iconoHamburguesa.png"  Background="#FFE4E4E4">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height ="auto"/>
