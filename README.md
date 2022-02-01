@@ -1,5 +1,7 @@
 # ControlCalorico ![version](https://img.shields.io/badge/version-1.0-blue)
 
+#### NOTA FINAL : 8
+
 Trabajo de la asignatura Interfaces Gráficas de Usuario (IGU) en el 3º Curso del Grado de Ingeniería Informática USAL
 
 ## Finalidad del proyecto 🚀
