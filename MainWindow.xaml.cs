@@ -80,7 +80,7 @@ namespace TrabajoFinal_IGU_70926454C
             int maximo = 0;
             
             int posicion = 0;
-            int tamanioEjeX = (int)(canvasTablaGeneral.ActualHeight - 100);
+            int tamanioEjeY = (int)(canvasTablaGeneral.ActualHeight - 100);
             if (tablaGeneral.IsSelected && comidasDibujables != null && comidasDibujables.Count > 0)
             {
                 
@@ -109,7 +109,7 @@ namespace TrabajoFinal_IGU_70926454C
                 {
                     if (c.Total > maximo) maximo = c.Total;
                 }
-                int tamEtiquetas = tamanioEjeX / 6;
+                int tamEtiquetas = tamanioEjeY / 6;
                 for (int i = 0; i < 7; i++)
                 {
                     Label label = new Label();
